@@ -7,11 +7,13 @@ import './App.css';
 import Search from './components/users/search';
 import Alert from './components/layout/Alert';
 import About from './components/Pages/About';
+import User from './components/users/user';
 
 
 class App extends Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null
   };
@@ -47,9 +49,20 @@ class App extends Component {
     setTimeout(() => this.setState({ alert: null}), 5000);
   };
 
+  getUser = async (username) => {
+    this.setState({loading: true});
+
+    const res = await axios.get(
+      `https://api.githu.com/users?q=${username}&client_id=${
+      process.env.REACT_APP_GITHUB_CLIENT_ID}&client_service=${
+      process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({user: res.data, loading: false})
+  };
+
   render() {
-    const {loading, users} = this.state;
-    return(
+    const {loading, users, user} = this.state;
+    return (
       <div className="App">
         <Router>
           <Navbar />
@@ -66,6 +79,7 @@ class App extends Component {
                   <Users loading={loading} users={users} />
                 }/>
                 <Route exact path="/about" element={<About/>} />
+                <Route excat path="/user/:login" element={<User loading={loading} />} />
               </Routes>
             </div>
         </Router>

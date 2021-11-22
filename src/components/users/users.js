@@ -16,7 +16,7 @@ const Users = ({ users, loading }) => {
         </div>
       </>
     )
-  } 
+  }
 }
 
 Users.propTypes = {
