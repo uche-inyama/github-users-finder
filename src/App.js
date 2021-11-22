@@ -57,7 +57,7 @@ class App extends Component {
       process.env.REACT_APP_GITHUB_CLIENT_ID}&client_service=${
       process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
-    this.setState({user: res.data, loading: false})
+    this.setState({user: res.data, loading: false});
   };
 
   render() {
@@ -75,11 +75,11 @@ class App extends Component {
               setAlert={this.setAlert}
               />
               <Routes>
-                <Route excat path='/' element={
+                <Route exact path='/' element= {
                   <Users loading={loading} users={users} />
                 }/>
-                <Route exact path="/about" element={<About/>} />
-                <Route excat path="/user/:login" element={<User loading={loading} />} />
+                <Route exact path="/about" element={<About />} />
+                <Route path="/user/:login" element={<User getUser={this.getUser} user={user}/>} />
               </Routes>
             </div>
         </Router>
