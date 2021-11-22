@@ -6,6 +6,7 @@ import axios from 'axios';
 import './App.css';
 import Search from './components/users/search';
 import Alert from './components/layout/Alert';
+import About from './components/Pages/About';
 
 
 class App extends Component {
@@ -21,7 +22,7 @@ class App extends Component {
     ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
     ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     this.setState({ users: res.data, loading: false});
-  }
+  };
 
   searchUsers = async (text) => {
     const res = await axios.get(
@@ -42,34 +43,35 @@ class App extends Component {
         msg,
         type
       }
-    })
-    setTimeout(() => this.setState({ alert: null}), 5000)
-  }
+    });
+    setTimeout(() => this.setState({ alert: null}), 5000);
+  };
 
   render() {
     const {loading, users} = this.state;
     return(
       <div className="App">
-        <Navbar />
-        <div className='container'>
-          <Alert alert={this.state.alert} />
+        <Router>
+          <Navbar />
+          <div className='container'>
+            <Alert alert={this.state.alert} />
             <Search
               searchUsers={this.searchUsers}
               clearUsers={this.clearUsers}
               showClear={users.length > 0 ? true : false }
               setAlert={this.setAlert}
               />
-            <Router>
               <Routes>
                 <Route excat path='/' element={
                   <Users loading={loading} users={users} />
                 }/>
+                <Route exact path="/about" element={<About/>} />
               </Routes>
-            </Router>
-        </div>
+            </div>
+        </Router>
       </div>
     );
   };
-}
+};
 
 export default App;
