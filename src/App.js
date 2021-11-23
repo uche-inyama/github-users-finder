@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/users';
@@ -14,6 +14,7 @@ class App extends Component {
   state = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
     alert: null
   };
@@ -53,15 +54,24 @@ class App extends Component {
     this.setState({loading: true});
 
     const res = await axios.get(
-      `https://api.githu.com/users?q=${username}&client_id=${
-      process.env.REACT_APP_GITHUB_CLIENT_ID}&client_service=${
-      process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/users/${username}`
     );
     this.setState({user: res.data, loading: false});
   };
 
+  getUserRepos = async (username) => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${
+        process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
+      ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({ repos: res.data, loading: false })
+  }
+
   render() {
-    const {loading, users, user} = this.state;
+    const {loading, users, user, repos} = this.state;
     return (
       <div className="App">
         <Router>
@@ -79,7 +89,14 @@ class App extends Component {
                   <Users loading={loading} users={users} />
                 }/>
                 <Route exact path="/about" element={<About />} />
-                <Route path="/user/:login" element={<User getUser={this.getUser} user={user}/>} />
+                <Route path="/user/:login" element={<User 
+                    loading={loading} 
+                    getUser={this.getUser} 
+                    user={user}
+                    getUserRepos={this.getUserRepos}
+                    repos={repos}
+                  />
+                }/>
               </Routes>
             </div>
         </Router>
