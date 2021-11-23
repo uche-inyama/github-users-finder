@@ -6,10 +6,12 @@ import Repos from '../repos/Repos';
 
 const User = ({getUser, user, loading, getUserRepos, repos}) => {
   let { login } = useParams();
+
   useEffect(() => {
     getUser(login)
     getUserRepos(login)
-  },[getUser, login, getUserRepos])
+    // eslint-disable-next-line 
+  },[])
 
   const { name, location, avatar_url, bio, 
     blog, followers, following, html_url,
@@ -80,7 +82,6 @@ User.prototype = {
   user: PropTypes.shape({
     name: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired
-
   }),
   getUserRepos: PropTypes.func.isRequired
 }
