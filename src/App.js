@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import Users from './components/users/users';
 import axios from 'axios';
 import './App.css';
+import GithubState from './components/context/github/GithubState';
 import Search from './components/users/search';
 import Alert from './components/layout/Alert';
 import About from './components/Pages/About';
@@ -24,7 +25,6 @@ const App = () => {
     const res = await axios.get(`https://api.github.com/users?client_id=
     ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
     ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    // console.log(res.data)
     setUsers(res.data);
     setLoading(false);
   };
@@ -82,34 +82,36 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <GithubState>
       <Router>
-        <Navbar />
-        <div className='container'>
-          <Alert alert={alert} />
-          <Search
-            searchUsers={searchUsers}
-            clearUsers={clearUsers}
-            showClear={users.length > 0 ? true : false }
-            setAlert={getAlert}
-            />
-            <Routes>
-              <Route exact path='/' element= {
-                <Users loading={loading} users={users} />
-              }/>
-              <Route exact path="/about" element={<About />} />
-              <Route path="/user/:login" element={<User 
-                loading={loading}
-                getUser={getUser}
-                user={user}
-                getUserRepos={getUserRepos}
-                repos={repos}
-                />
-              }/>
-            </Routes>
+        <div className="App">
+          <Navbar />
+          <div className='container'>
+            <Alert alert={alert} />
+            <Search
+              searchUsers={searchUsers}
+              clearUsers={clearUsers}
+              showClear={users.length > 0 ? true : false }
+              setAlert={getAlert}
+              />
+              <Routes>
+                <Route exact path='/' element= {
+                  <Users loading={loading} users={users} />
+                }/>
+                <Route exact path="/about" element={<About />} />
+                <Route path="/user/:login" element={<User 
+                  loading={loading}
+                  getUser={getUser}
+                  user={user}
+                  getUserRepos={getUserRepos}
+                  repos={repos}
+                  />
+                }/>
+              </Routes>
+            </div>
           </div>
       </Router>
-    </div>
+    </GithubState>
   );
 };
 
