@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/users';
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
 import GithubState from './components/context/github/GithubState';
+import AlertState from './components/context/alert/alertState';
 import Search from './components/users/search';
 import Alert from './components/layout/Alert';
 import About from './components/Pages/About';
 import User from './components/users/user';
 
-
 const App = () => {
 
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
-  const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(null);
-
+  // const [users, setUsers] = useState([]);
+  // const [user, setUser] = useState({});
+  // const [repos, setRepos] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [alert, setAlert] = useState(null);
 
   // const getUsers = async () => {
   //   setLoading(true);
@@ -49,41 +48,43 @@ const App = () => {
   //   setUsers([]);
   // };
 
-  const getAlert = (msg, type) => {
-    setAlert({msg, type});
-    setTimeout(() => setAlert(null), 5000);
-  };
+  // const getAlert = (msg, type) => {
+  //   setAlert({msg, type});
+  //   setTimeout(() => setAlert(null), 5000);
+  // };
 
   return (
     <GithubState>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <div className='container'>
-            <Alert alert={alert} />
-            <Search
-              // searchUsers={searchUsers}
-              // clearUsers={clearUsers}
-              // showClear={users.length > 0 ? true : false }
-              setAlert={getAlert}
-              />
-              <Routes>
-                <Route exact path='/' element= {
-                  <Users />
-                }/>
-                <Route exact path="/about" element={<About />} />
-                <Route path="/user/:login" element={<User 
-                  // loading={loading}
-                  // getUser={getUser}
-                  // user={user}
-                  // getUserRepos={getUserRepos}
-                  // repos={repos}
-                  />
-                }/>
-              </Routes>
+      <AlertState>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <div className='container'>
+              <Alert />
+              <Search
+                // searchUsers={searchUsers}
+                // clearUsers={clearUsers}
+                // showClear={users.length > 0 ? true : false }
+                // setAlert={getAlert}
+                />
+                <Routes>
+                  <Route exact path='/' element= {
+                    <Users />
+                  }/>
+                  <Route exact path="/about" element={<About />} />
+                  <Route path="/user/:login" element={<User 
+                    // loading={loading}
+                    // getUser={getUser}
+                    // user={user}
+                    // getUserRepos={getUserRepos}
+                    // repos={repos}
+                    />
+                 }/>
+                </Routes>
             </div>
           </div>
-      </Router>
+        </Router>
+      </AlertState>
     </GithubState>
   );
 };

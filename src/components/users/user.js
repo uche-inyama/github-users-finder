@@ -5,11 +5,10 @@ import GithubContext from '../context/github/githubContext';
 import Spinner from '../layout/spinner';
 import Repos from '../repos/Repos';
 
-const User = ({getUser, loading, getUserRepos, repos}) => {
+const User = () => {
   let { login } = useParams();
 
   const Context = useContext(GithubContext);
-
 
   useEffect(() => {
     Context.getUser(login);
@@ -76,9 +75,7 @@ const User = ({getUser, loading, getUserRepos, repos}) => {
         <div className="badge badge-light">Public Repos: {public_repos}</div>
         <div className="badge badge-dark">Public Gists: {public_gists}</div>
       </div>
-      <Repos 
-        // repos={repos}
-      />
+      <Repos />
     </Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import { SEARCH_USERS, SET_LOADING, CLEAR_USERS, GET_REPOS, GET_USER } from '../types';
+import { SEARCH_USERS, SET_LOADING, SET_ALERT, CLEAR_USERS, GET_REPOS, GET_USER } from '../types';
 
 const reducer = (state, action) => {
   switch(action.type) {
@@ -29,6 +29,11 @@ const reducer = (state, action) => {
         ...state,
         repos: action.payload,
         loading: false
+      }
+    case SET_ALERT:
+      return {
+        ...state,
+        alert: action.payload
       }
     default: 
       return state;
