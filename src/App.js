@@ -45,40 +45,13 @@ const App = () => {
   //   setLoading(false);
   // };
   
-  const clearUsers = () => {
-    setUsers([]);
-  };
+  // const clearUsers = () => {
+  //   setUsers([]);
+  // };
 
   const getAlert = (msg, type) => {
     setAlert({msg, type});
     setTimeout(() => setAlert(null), 5000);
-  };
-
-  const getUser = async (username) => {
-    console.log('getUser');
-    setLoading(true);
-    const res = await axios.get(
-      `https://api.github.com/users/${username}?client_id=${
-        process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${
-          process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-      );
-      console.log(res.data)
-    setUser(res.data);
-    setLoading(false);
-  };
-
-  const getUserRepos = async (username) => {
-    console.log('getUserRepos');
-    setLoading(true);
-
-    const res = await axios.get(
-      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${
-        process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
-      ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-    console.log(res.data);
-    setRepos(res.data);
-    setLoading(false);
   };
 
   return (
@@ -90,8 +63,8 @@ const App = () => {
             <Alert alert={alert} />
             <Search
               // searchUsers={searchUsers}
-              clearUsers={clearUsers}
-              showClear={users.length > 0 ? true : false }
+              // clearUsers={clearUsers}
+              // showClear={users.length > 0 ? true : false }
               setAlert={getAlert}
               />
               <Routes>
@@ -100,11 +73,11 @@ const App = () => {
                 }/>
                 <Route exact path="/about" element={<About />} />
                 <Route path="/user/:login" element={<User 
-                  loading={loading}
-                  getUser={getUser}
-                  user={user}
-                  getUserRepos={getUserRepos}
-                  repos={repos}
+                  // loading={loading}
+                  // getUser={getUser}
+                  // user={user}
+                  // getUserRepos={getUserRepos}
+                  // repos={repos}
                   />
                 }/>
               </Routes>
