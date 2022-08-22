@@ -11,7 +11,7 @@ JavaScript & React
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://gentle-beijinho-7858b5.netlify.app/)
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ JavaScript & React
     Node should be installed on the machine
 
 ### Setup
-    Clone the repository on your local machine, then cd to the directory where is saved.
+    Clone the repository on your local machine, then cd to the directory where it is saved.
 
 ### Installation
     run npm install
