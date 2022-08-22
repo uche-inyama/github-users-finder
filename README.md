@@ -29,7 +29,9 @@ JavaScript & React
      
 ### Author
 
-@githubhandle: [github](https://github.com/uche-inyama/)
+👤 **Inyama, Uchechukwu Henry**
 
-@linkedinhandle: [Linkedin](https://www.linkedin.com/in/uchechukwu-inyama)
+- Github: [@githubhandle](https://github.com/uche-inyama)
+- Twitter: [@twitterhandle](https://twitter.com/euuoc)
+- Linkedin: [linkedin](https://www.linkedin.com/in/uchechukwu-inyama/)
     
