@@ -28,5 +28,8 @@ JavaScript & React
      run yarn start
      
 ### Author
-    Inyama, Uchechukwu Henry.
+
+@githubhandle: [github](https://github.com/uche-inyama/)
+
+@linkedinhandle: [Linkedin](https://www.linkedin.com/in/uchechukwu-inyama)
     
