@@ -16,7 +16,7 @@ JavaScript & React
 ## Getting Started
 
 ### Prerequisites 
-    Node
+    Node should be installed on the machine
 
 ### Setup
     Clone the repository on your local machine, then cd to the directory where is saved.
