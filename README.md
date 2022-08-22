@@ -22,10 +22,10 @@ JavaScript & React
     Clone the repository on your local machine, then cd to the directory where it is saved.
 
 ### Installation
-    run npm install
+    run yarn
     
 ### Usage
-     run npm run dev
+     run yarn start
      
 ### Author
     Inyama, Uchechukwu Henry.
