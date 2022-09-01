@@ -31,8 +31,8 @@ const GithubState = props =>
   };
 
 	const getUser = async (username) => {
-    setLoading();
-    const res = await axios.get(
+    	setLoading();
+    	const res = await axios.get(
       `https://api.github.com/users/${username}?client_id=${
         process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${
           process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
@@ -52,39 +52,38 @@ const GithubState = props =>
       ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
 
-dispatch({
-  type: GET_REPOS,
-  payload: res.data
-})
+	dispatch({
+	  type: GET_REPOS,
+	  payload: res.data
+	})
   };
 
-	const getAlert = (msg, type) => {
-		dispatch({
-			type: SET_ALERT,
-			payload: { msg, type }
-		});
+const getAlert = (msg, type) => {
+	dispatch({
+		type: SET_ALERT,
+		payload: { msg, type }
+	 });
     // setAlert({msg, type});
     // setTimeout(() => setAlert(null), 5000);
   };
-
-	const clearUsers = () => dispatch({ type: CLEAR_USERS });
+  
+  const clearUsers = () => dispatch({ type: CLEAR_USERS });
 
   const setLoading = () => dispatch({type: SET_LOADING});
-
-	return <GithubContext.Provider 
-		value={{
-			users: state.users,
-			user: state.user,
-			repos: state.repos,
-			loading: state.loading,
-      searchUsers,
-			clearUsers,
-			getUser,
-			getUserRepos,
-			getAlert
-		}}
-	>
-		{props.children}
+     return <GithubContext.Provider 
+	value={{
+		users: state.users,
+		user: state.user,
+		repos: state.repos,
+		loading: state.loading,
+		searchUsers,
+		clearUsers,
+		getUser,
+		getUserRepos,
+		getAlert
+	     }}
+          >
+	  {props.children}
 	</GithubContext.Provider>
 }
 
